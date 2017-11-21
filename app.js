@@ -43,18 +43,25 @@ Vue.component('news-list', {
     }
   }
 });
+// From NYTimes
+const SECTIONS = "home, arts, automobiles, books, business, fashion, food, health, insider, magazine, movies, national, nyregion, obituaries, opinion, politics, realestate, science, sports, sundayreview, technology, theater, tmagazine, travel, upshot, world";
 
 const vm = new Vue({
     el: '#app',
     data: {
-        results: []
+        results: [],
+        // カンマ区切りのセクションを配列に変換してセット
+        sections: SECTIONS.split(', '),
+        // セクションのデフォルト値をセット
+        section: 'home',
     },
     mounted() {
-        this.getPost('home');
+        this.getPost(this.section);
     },
     methods: {
       getPost(section) {
         let url = buildUrl(section);
+        console.log(url);
         axios.get(url).then((response) => {
           this.results = response.data.results;
         }).catch(error => { console.log(error); });

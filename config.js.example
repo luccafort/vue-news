@@ -1,3 +1,9 @@
 const config = {
-	KEY: "YOUR_NYT_API_KEY"
+	domain: 'API-DOMAIN',
+	base_path: '/path/to/directory/',
+	api_key: "YOUR-API-KEY",
+}
+
+function buildUrl(section) {
+	return 'https://' + config.domain + config.base_path + section + '.json?api_key=' + config.api_key;
 }

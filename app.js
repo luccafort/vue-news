@@ -1,11 +1,3 @@
-const Domain  = 'api.nytimes.com';
-const BasePath = '/svc/topstories/v2/';
-const API_KEY = 'a409a682764b45a0aaa15393c66bf8ca';
-
-function buildUrl(url) {
-  return 'https://' + Domain + BasePath + url + '.json?api_key=' + API_KEY;
-}
-
 Vue.component('news-list', {
   // 親スコープからコンポーネントに渡したいデータ
   props: ['results'],
@@ -61,7 +53,6 @@ const vm = new Vue({
     methods: {
       getPost(section) {
         let url = buildUrl(section);
-        console.log(url);
         axios.get(url).then((response) => {
           this.results = response.data.results;
         }).catch(error => { console.log(error); });

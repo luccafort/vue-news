@@ -2,8 +2,15 @@ const config = {
 	domain: 'API-DOMAIN',
 	base_path: '/path/to/directory/',
 	api_key: "YOUR-API-KEY",
+	section_list: '',　// NYTにおけるカテゴリーフィルターのカテゴリー名をカンマ区切りで定義
 }
 
+// アクセスするURLをConfigに登録されたデータから生成
 function buildUrl(section) {
 	return 'https://' + config.domain + config.base_path + section + '.json?api_key=' + config.api_key;
+}
+
+// 定義されたカテゴリーフィルターを配列にして返す
+function getSections(separater=','){
+	return config.section_list.split(separater);
 }

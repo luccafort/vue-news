@@ -35,15 +35,13 @@ Vue.component('news-list', {
     }
   }
 });
-// From NYTimes
-const SECTIONS = "home, arts, automobiles, books, business, fashion, food, health, insider, magazine, movies, national, nyregion, obituaries, opinion, politics, realestate, science, sports, sundayreview, technology, theater, tmagazine, travel, upshot, world";
 
 const vm = new Vue({
     el: '#app',
     data: {
         results: [],
         // カンマ区切りのセクションを配列に変換してセット
-        sections: SECTIONS.split(', '),
+        sections: getSections(),
         // セクションのデフォルト値をセット
         section: 'home',
     },

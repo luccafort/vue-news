@@ -44,6 +44,7 @@ const vm = new Vue({
         sections: getSections(),
         // セクションのデフォルト値をセット
         section: 'home',
+        loading: true,
     },
     mounted() {
         this.getPost(this.section);
@@ -52,6 +53,7 @@ const vm = new Vue({
       getPost(section) {
         let url = buildUrl(section);
         axios.get(url).then((response) => {
+          this.loading = false;
           this.results = response.data.results;
         }).catch(error => { console.log(error); });
       }
